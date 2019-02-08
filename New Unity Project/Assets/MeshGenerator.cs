@@ -22,7 +22,8 @@ public class MeshGenerator : MonoBehaviour {
 
         //RequireComponent declaration earlier should guarantee a MeshFilter component
         mesh = GetComponent<MeshFilter>().mesh;
-        MeshCollider = GetComponent<MeshCollider>();
+
+        meshCollider = GetComponent<MeshCollider>();
 
         vertexList = new List<Vector3>();
         triIndexList = new List<int>();
@@ -35,14 +36,15 @@ public class MeshGenerator : MonoBehaviour {
         mesh.vertices = vertexList.ToArray();
         mesh.triangles = triIndexList.ToArray();
 
-        meshCollider.sharedMesh = null;
-        meshCollider.sharedMesh = mesh;
-
         //Convert UV list to array and store in mesh
         mesh.uv = UVList.ToArray();
 
         //Recalculating Normals to avoid Errors
         mesh.RecalculateNormals();
+
+        //Setting up mesh coliders
+        meshCollider.sharedMesh = null;
+        meshCollider.sharedMesh = mesh;
 
     }
 
