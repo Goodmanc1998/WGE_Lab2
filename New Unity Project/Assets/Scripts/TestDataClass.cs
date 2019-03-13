@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TestDataClass : MonoBehaviour
 {
-    public string nameOne;
+    public string name;
     public string description;
 
     public TestDataClass(string s1, string s2)
     {
-        nameOne = s1;
+        name = s1;
         description = s2;
     }
 
