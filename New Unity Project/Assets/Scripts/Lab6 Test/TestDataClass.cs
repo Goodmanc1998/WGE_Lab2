@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestDataClass : MonoBehaviour
+public class TestDataClass
 {
     public string name;
     public string description;

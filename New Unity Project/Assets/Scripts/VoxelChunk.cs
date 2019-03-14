@@ -8,7 +8,6 @@ public class VoxelChunk : MonoBehaviour {
     int[,,] terrainArray;
     int chunkSize = 16;
 
-
     // delegate signature
     public delegate void EventBlockChanged();
 
@@ -34,8 +33,25 @@ public class VoxelChunk : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            XMLVoxelFileWriter.SaveChunkToXMLFile(terrainArray, "VoxelChunk");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            // Get terrainArray from XML file
+            terrainArray = XMLVoxelFileWriter.LoadChunkFromXMLFile(16, "VoxelChunk");
+            // Draw the correct faces
+            CreateTerrain();
+            // Update mesh info
+            voxelGenerator.updateMesh();
+
+
+        }
+
+    }
 
      void InitialiseTerrain()
     {
@@ -55,7 +71,6 @@ public class VoxelChunk : MonoBehaviour {
                     if (y == 3)
                     {
                         terrainArray[x, y, z] = 1;
-
                         terrainArray[0, 3, 1] = 4;
                         terrainArray[0, 3, 2] = 4;
                         terrainArray[0, 3, 3] = 4;
